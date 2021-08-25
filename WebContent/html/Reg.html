@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Validation Demo</title>
+<script type="text/javascript">
+function validate()
+{
+ var e1 = /^[0-9a-zA-Z]*$/;
+ var sp1 = document.getElementById("id");
+ if(document.reg.uid.value=="")
+ {
+	// alert("User Id is required!");
+	sp1.innerHTML = "User Id is required!";
+	return false;
+ }
+ else if(e1.test(document.reg.uid.value)==false)
+ {
+	 //alert("Only alphanumeric values is applicable!");
+	 sp1.innerHTML = "Only alphanumeric values are required!";
+	 return false;
+ }
+ else
+ {
+	 //alert("OK");
+	 sp1.innerHTML="Ok";
+ }
+ 
+ 
+ /////////////////////////////////////////////////////////////////
+ var e2 = /^[a-zA-Z ]*$/;
+ var sp2 = document.getElementById("uname");
+ if(document.reg.name.value=="")
+ {
+	sp2.innerHTML = "User Name is required!";
+	return false;
+ }
+ else if(e2.test(document.reg.name.value)==false)
+ {
+	 sp2.innerHTML = "Only alphabets are applicable!";
+	 return false;
+ }
+ else
+ {
+	 sp2.innerHTML="Ok";
+ }
+  
+ /////////////////////////////////////////////////////////////////////////
+ 
+ var e3 = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&])([a-zA-Z0-9 ]*).{6,10}$/;
+ var sp3 = document.getElementById("pass");
+ if(document.reg.password.value=="")
+ {
+	sp3.innerHTML = "Password is required!";
+	return false;
+ }
+ else if(e3.test(document.reg.password.value)==false)
+ {
+	 sp3.innerHTML = "Use One small, Capital, digit and special symbol with atleast 6 to 10 character long.";
+	 return false;
+ }
+ else
+ {
+	 sp3.innerHTML="Ok";
+ }
+ 
+ /////////////////////////////////////////////////////////////////////
+ 
+ var e4 = /^([0-9]*).{10,10}$/;
+ var sp4 = document.getElementById("cont");
+ if(document.reg.contact.value=="")
+ {
+	sp4.innerHTML = "Contact No. is required!";
+	return false;
+ }
+ else if(e4.test(document.reg.contact.value)==false)
+ {
+	 sp4.innerHTML = "Only 10 digits!";
+	 return false;
+ }
+ else
+ {
+	 sp4.innerHTML="Ok";
+ }
+ 
+ /////////////////////////////////////////////////////////////////////////
+ 
+ var e5 =/^([_A-Za-z0-9-]*)+(\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-]+\.)+([A-Za-z]{2,3})$/;
+ var sp5 = document.getElementById("eid");
+ if(document.reg.email.value=="")
+ {
+	sp5.innerHTML = "Email id is required!";
+	return false;
+ }
+ else if(e5.test(document.reg.email.value)==false)
+ {
+	 sp5.innerHTML = "Please input valid email Id. eg. abc@gmail.com";
+	 return false;
+ }
+ else
+ {
+	 sp5.innerHTML="Ok";
+	 return true;
+ }
+ //////////////////////////////////////////////////////////////////////////
+ 
+ 
+ return false;	
+}
+</script>
+</head>
+
+<body bgcolor="#FFCC66">
+<h2>Registration Form</h2>
+<form name="reg" action="" method="get" onsubmit="return validate()">
+<table>
+<tr><td>User Id</td><td><input type="text" name="uid" />
+<span id="id"></span>
+</td></tr>
+<tr><td>User Name</td><td><input type="text" name="name" />
+<span id="uname"></span>
+</td></tr>
+<tr><td>Password</td><td><input type="password" name="password" />
+<span id="pass"></span>
+</td></tr>
+<tr><td>Contact No.</td><td><input type="text" name="contact" />
+<span id="cont"></span>
+</td></tr>
+<tr><td>E-mail</td><td><input type="text" name="email" />
+<span id="eid"></span>
+</td></tr>
+<tr><td></td><td><input type="submit" value="Register"/>
+
+</td></tr>
+
+</table>
+</form>
+</body>
+</html>

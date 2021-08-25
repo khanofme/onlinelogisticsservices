@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>registration</title>
+<script>
+<script type="text/javascript">
+function validate()
+{
+ var e1 = /^[0-9a-zA-Z]*$/;
+ var sp1 = document.getElementById("txtuserID");
+ if(document.reg.txtuserID1.value=="")
+ {
+	//alert("User Id is required!");
+	sp1.innerHTML = "User Id is required!";
+	return false;
+ }
+ else if(e1.test(document.reg.txtuserID1.value)==false)
+ {
+	// alert("Only alphanumeric values is applicable!");
+	 sp1.innerHTML = "Only alphanumeric values are required!";
+	 return false;
+ }
+ else
+ {
+	 //alert("OK");
+	 sp1.innerHTML="Ok";
+ }
+ //////////////////////////////////
+ var e2 = /^[a-zA-Z ]*$/;
+ var sp2 = document.getElementById("txtname");
+ if(document.reg.txtname1.value=="")
+ {
+	sp2.innerHTML = "User Name is required!";
+	return false;
+ }
+ else if(e2.test(document.reg.txtname1.value)==false)
+ {
+	 sp2.innerHTML = "Only alphabets are applicable!";
+	 return false;
+ }
+ else
+ {
+	 sp2.innerHTML="Ok";
+ }
+ ///////////////////////////////
+ var e3 = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&])([a-zA-Z0-9 ]*).{6,10}$/;
+ var sp3 = document.getElementById("txtpassword");
+ if(document.reg.txtpassword1.value=="")
+ {
+	sp3.innerHTML = "Password is required!";
+	return false;
+ }
+ else if(e3.test(document.reg.txtpassword1.value)==false)
+ {
+	 sp3.innerHTML = "Use One small, Capital, digit and special symbol with atleast 6 to 10 character long.";
+	 return false;
+ }
+ else
+ {
+	 sp3.innerHTML="Ok";
+ }
+ /////////////////////////
+ var e4 = /^([0-9]*).{10,10}$/;
+ var sp4 = document.getElementById("phnnum1");
+ if(document.reg.phnnum.value=="")
+ {
+	sp4.innerHTML = "Contact No. is required!";
+	return false;
+ }
+ else if(e4.test(document.reg.phnnum.value)==false)
+ {
+	 sp4.innerHTML = "Only 10 digits!";
+	 return false;
+ }
+ else
+ {
+	 sp4.innerHTML="Ok";
+ }
+ ////////////////////////
+ var e5 =/^([_A-Za-z0-9-]*)+(\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-]+\.)+([A-Za-z]{2,3})$/;
+ var sp5 = document.getElementById("txtemail1");
+ if(document.reg.txtemail.value=="")
+ {
+	sp5.innerHTML = "Email id is required!";
+	return false;
+ }
+ else if(e5.test(document.reg.txtemail.value)==false)
+ {
+	 sp5.innerHTML = "Please input valid email Id. eg. abc@gmail.com";
+	 return false;
+ }
+ else
+ {
+	 sp5.innerHTML="Ok";
+	 return true;
+ }
+return false;
+}
+
+function showcity(ct)
+{
+	if(ct=="others")
+     {
+		document.getElementById("txtcity").style.display="block";//show
+     }
+	else
+		{
+		document.getElementById("txtcity").style.display="none";//hide
+		}
+}
+function checkUserId(ui)
+{
+	if(XMLHttpRequest)
+		{
+		x=new XMLHttpRequest();
+		}
+	else
+		{
+		x=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	x.onReadystatechange=function()
+	{
+		if(x.readyState==4 && x.status==200)
+			{
+			var info=x.responseText();
+			document.getElementById("msg").innerHTML="<font color='red'>"+info+"</font>";
+			}
+	}
+	x.open("GET","/logistics/Registration?userid="+ui,"true");
+	x.send();
+	}
+function showcity(ct)
+{
+	if(ct=="others")
+     {
+		document.getElementById("txtcity").style.display="block";//show
+     }
+	else
+		{
+		document.getElementById("txtcity").style.display="none";//hide
+		}
+}
+function checkUserId(ui)
+{
+	if(XMLHttpRequest)
+		{
+		x=new XMLHttpRequest();
+		}
+	else
+		{
+		x=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	x.onReadystatechange=function()
+	{
+		if(x.readyState==4 && x.status==200)
+			{
+			var info=x.responseText();
+			document.getElementById("msg").innerHTML="<font color='red'>"+info+"</font>";
+			}
+	}
+	x.open("GET","/logistics/Registration?userid="+ui,"true");
+	x.send();
+	}
+</script>
+<style>
+h1 {
+	color: black;
+	size: 20px;
+	font-family:Monotype Corsiva;
+	text-decoration:inherit;
+	text-align: center;
+}
+
+input.fmt {
+	border-style: hidden;
+	border-radius:5px;
+	color:white;
+	background-image: url("/logistics/images/Desert.jpg")
+}
+</style>
+</head>
+<body background="/logistics/images/alliance.jpg">
+	<a href="/logistics/html/HomePage.html">home</a>
+	<H1><b>OLS Welcomes You On The Registration Page</b></H1>
+	<Form method="post" action="/logistics/Registration">
+		<table style="width: 200px; height: 200px" align="center"cellspacing="8">
+			<tr><th><label>userID:</label></th>
+				<td><input type="text" class="fmt" name="txtuserID1"id="txtuserID" placeholder="Enter userid" required="required" onblur="checkUserId(this.value)">
+					<h4 id="msg">  </h4></td></tr>
+			<tr>
+				<th><label>Password:</label></th>
+				<td><input type="password" class="fmt" name="txtpassword1"
+					id="txtpassword" placeholder="Enter password" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>Name:</label></th>
+				<td><input type="text" class="fmt" name="txtname1" id="txtname"
+					placeholder="Enter name" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>Gender:</label></th>
+				<td><input type="radio" class="fmt" name="gender" value="m" id="mgender"
+					checked>male <input type="radio" name="gender" value="f" id="fgender">female</td>
+			</tr>
+			<tr>
+				<th><label>Address:</label></th>
+				<td><textArea rows=10 cols=20 class="fmt" id="txtaddr"
+						name="txtaddr"></textArea>
+			</tr>
+			<tr>
+				<th><label>City:</label></th>
+				<td><Select name="cmbcity" id="cmbcity"
+					onchange="showcity(this.value)"><option value="default">Select
+							your city
+						<option value="lko">Lucknow</option>
+						<option value="knp">Kanpur</option>
+						<option value="bnd">Banda</option>
+						<option value="grp">Gorakhpur</option>
+						<option value="mkp">Mankapur</option>
+						<option value="alb">Allahabad</option>
+						<option value="others">Others</option>
+				</Select> <input type="text" id="txtcity" style="display: none"></td>
+			</tr>
+			<tr>
+				<th><label>State:</label></th>
+				<td><input type="text" class="fmt" id="txtstate" name="txtstate"
+					placeholder="State" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>Country:</label></th>
+				<td><input type="text" class="fmt" id="txtcountry" name="txtcountry"
+					placeholder="country" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>Pincode:</label></th>
+				<td><input type="number" class="fmt" id="txtpin" name="txtpin"
+					placeholder="pincode" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>EmailID:</label></th>
+				<td><input type="email" class="fmt" id="txtemail" name="txtemail"
+					placeholder="abc@xyz.com" required="required"></td>
+			</tr>
+			<tr>
+				<th><label>Mobile Number:</label></th>
+				<td><input type="number" class="fmt" name="phnnum" id="phnnum"
+					placeholder="0" required="required"></td></tr>
+			<tr><th><label>Date of birth:</label></th>
+				<td><input type="date" name="dob" id="dob" class="fmt" placeholder="00/00/0000" required="required"></td></tr>
+			<tr>
+				<td colspan=2 align="center">
+					<button type="submit">submit</button>
+			<tr>
+				<td colspan=2 align="center">
+					<button type="reset">reset</button>
+				</td>
+			</tr>
+		</table>
+	</Form>
+</body>
+</html>
